@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "vica",
+    "password": null,
+    "database": "garage_development",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "vica",
+    "password": null,
+    "database": "garage_test",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "vica",
+    "password": null,
+    "database": "garage_production",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
