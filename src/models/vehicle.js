@@ -14,14 +14,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Vehicle.init({
-    external_id: DataTypes.STRING,
-    licenseplate: DataTypes.STRING,
-    finorvin: DataTypes.STRING,
-    doors: DataTypes.JSONB,
-    location: DataTypes.JSONB,
-    odometer: DataTypes.JSONB,
-    fuel: DataTypes.JSONB,
-    status_charge: DataTypes.JSONB
+    name: DataTypes.STRING,
+    externalKey: DataTypes.STRING,
+    externalId: DataTypes.STRING,
+    makeId: DataTypes.INTEGER,
+    moreInfo: DataTypes.JSONB,
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
   }, {
     sequelize,
     modelName: 'Vehicle',

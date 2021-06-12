@@ -5,39 +5,30 @@ module.exports = {
       id: {
         allowNull: false,
         autoIncrement: true,
-        primaryKey: true,
+        unique: true,
         type: Sequelize.INTEGER
       },
-      external_id: {
-        type: Sequelize.STRING
+      externalKey: {
+        type: Sequelize.STRING,
+        unique: true,
       },
-      licenseplate: {
-        type: Sequelize.STRING
+      externalId: {
+        type: Sequelize.STRING,
+        unique: true,
       },
-      finorvin: {
-        type: Sequelize.STRING
+      name: {
+        type: Sequelize.STRING,
       },
-      doors: {
-        type: Sequelize.JSONB
+      makeId: {
+        type: Sequelize.INTEGER,
       },
-      location: {
-        type: Sequelize.JSONB
-      },
-      odometer: {
-        type: Sequelize.JSONB
-      },
-      fuel: {
-        type: Sequelize.JSONB
-      },
-      status_charge: {
+      moreInfo: {
         type: Sequelize.JSONB
       },
       createdAt: {
-        allowNull: false,
         type: Sequelize.DATE
       },
       updatedAt: {
-        allowNull: false,
         type: Sequelize.DATE
       }
     });
