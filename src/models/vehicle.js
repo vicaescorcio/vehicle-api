@@ -14,6 +14,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Vehicle.init({
+    id: 
+      {
+        type: DataTypes.INTEGER,
+        primaryKey: true
+      },
     name: DataTypes.STRING,
     externalKey: DataTypes.STRING,
     externalId: DataTypes.STRING,
