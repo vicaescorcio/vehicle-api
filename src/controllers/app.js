@@ -1,55 +1,103 @@
+// Controllers and Routes
+// TODO: separate them into routers/vehicles.js and controllers/vehicles.js
+
 const express = require('express');
-const axios = require('axios');
 
 const models = require('../models');
 
 const app = express();
 
-// .env
-const port = 3000;
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'DELETE, PUT, GET, POST');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
 
 app.use(express.json());
 
-// list all vehicles
-app.get('/', async (req, res) => {
-  const vehicles = await models.Vehicle.findAll()
-    res.json({ vehicles })
+// lists all vehicles
+app.get('/api/vehicles/', async (req, res) => {
+  const vehicles = await models.Vehicle.findAll();
+  res.json({ vehicles });
 });
 
-// get a vehicle
-app.get('/vehicle/:vehicleId', async (req, res) => {
+// gets a vehicle
+app.get('/api/vehicles/:vehicleId', async (req, res) => {
   const vehicleId = req.params.vehicleId
+
+  // TODO: create helpers to pull out this redudant record existency inspection blocks
   try {
-    const vehicle = await models.Vehicle.findAll({ where: { id: vehicleId } } )
-    res.json(vehicle[0])
+    let searchResult = await models.Vehicle.findAll({ where: { id: vehicleId } });
+    const vehicle = searchResult[0];
+
+    if (vehicle != undefined) {
+      res.json(vehicle);
+    } else {
+      res.status(404).send('There\'s no vehicle with this ID');
+    }
   } catch(error) {
-    console.error(error)
+    console.log(error)
+    res.status(500).send('Oops! Something went wrong');
   }
 });
 
-// create a vehicle
-app.post('/vehicle', async (req, res) => {
+// creates a vehicle
+app.post('/api/vehicle', async (req, res) => {
   try {
-    const newVehicle = new Vehicle(req.body)
-    await newVehicle.save()
-    res.json({ vehicle: newVehicle })
-  } catch(error) {
-    console.error(error)
-  }
-})
+    const newVehicle = await models.Vehicle.create(req.body);
 
-app.put('/vehicle/:vehicleId', function (req, res) {
-  res.send('Got a PUT request at /user');
+    res.json(newVehicle);
+  } catch(error) {
+    console.log(error)
+    res.status(500).send('Oops! Something went wrong');
+  }
+});
+
+// updates a vehicle
+app.put('/api/vehicle/:vehicleId', async (req, res) => {
+  const vehicleId = req.params.vehicleId
+
+  try {
+    let searchResult = await models.Vehicle.findAll({ where: { id: vehicleId } });
+    const updatedVehicle = searchResult[0];
+
+    if (updatedVehicle != undefined) {
+      await updatedVehicle.update(req.body);
+
+      res.json({ message: 'Vehicle was updated successfully!' });
+    } else {
+      res.status(404).send('There\'s no vehicle with this ID');
+    }
+  } catch(error) {
+    console.log(error)
+    res.status(500).send('Oops! Something went wrong');
+  }
 });
 
 // removes a vehicle
-app.delete('/vehicle/:vehicleId', async (req, res) => {
-  const deletedVehicle =
-    await models.Vehicle.destroy({
-      where: {
-        id: req.params.vehicleId
+app.delete('/api/vehicles/:vehicleId', async (req, res) => {
+  try {
+    let searchResult =
+      await models.Vehicle.findAll({
+        where: {
+          id: req.params.vehicleId
+        }
+      });
+
+      const deletedVehicle = searchResult[0];
+
+      if(deletedVehicle) {
+        await deletedVehicle.destroy();
+
+        res.json({ message: 'Vehicle was deleted successfully!' });
+      } else {
+        res.status(404).send('There\'s no vehicle with this ID');
       }
-    })
+    } catch(error) {
+      console.log(error)
+      res.status(500).send('Oops! Something went wrong');
+    }
 });
 
 module.exports = app;
