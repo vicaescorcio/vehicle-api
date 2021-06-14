@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "v16.2.0"
+  },
   "scripts": {
     "test": "cross-env NODE_ENV=test jest --testTimeout=10000",
     "pretest": "cd src/ && cross-env NODE_ENV=test sequelize db:drop && NODE_ENV=test sequelize db:create && NODE_ENV=test sequelize db:migrate",
