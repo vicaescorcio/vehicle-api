@@ -1,63 +1,65 @@
 # vehicle-api
-A simple API that manages vehicles data from remote source: http://fipeapi.appspot.com/
+A simple API that manages vehicles data from remote source. Access the simple [web interface](https://vehicles-node-react.herokuapp.com/)t o see the current data.
 
 ### About
-Designed to minimally abstract database logic, this template scaffolds common API design decisions
-and allows you to quickly distribute your data in common formats, such as JSON and CSV. This is meant to serve as a boilerplate for quickly establishing an API for an existing database system. We have succesfully and deployed this API framework on top of MariaDB, Postgres, and MongoDB.
-
-While researching API design with Node.js, there were many questions, such as versioning and handling of relational databases, that did not have obvious answers. This template is one opinion on a set of answers to many common API design questions.
+The idea is to download the data available on the provided
+endpoint [FIPEAPI](http://fipeapi.appspot.com/) and merge it to the current data. The backend
+(APIs) needs to provide the basic CRUD actions as usual for its entities (e.g. POST, GET, DELETE, etc.).
 
 ### Features
-+ Versioning
-+ Support for various data stores
-+ Tests
-+ Flexibility
-+ Extensibility
-+ The Javascript you know and love
-+ Minimal abstractions
++ CRUD vechicles data
++ Visualize it through a react interface
 
-
-### Organization
-Each version of the API functions as a self-contained module, and therefore has its own ````package.json````, ````README````, and dependencies.
-
+### Requirements
+- node version ^v16.2.0
+- npm ^7.13.0
+P.S you can get both with [nvm](https://github.com/nvm-sh/nvm)
 
 ### Install
+
+- Clone project and go to root dir
 ````
-curl -LOk https://github.com/UW-Macrostrat/node-api-template/archive/master.zip
-unzip master.zip
-cd node-api-template-master
+# clone this repo locally via ssh or https:
+git clone https://github.com/vicaescorcio/vehicle-api.git
+
+# change directory to vehicle-api/
+cd vehicle-api/
+````
+
+- Create .env file in root with the variables:
+````
+# Databases
+DB_USER=garage
+DB_PASSWORD=<your_db_password>
+DB_HOST=<your_db_localhost>
+````
+
+- Install modules and setup data:
+````
+# install modules
 npm install
+
+# setup db and populate it with vehicle remote data
+npm run dev:setup
+
 ````
-
-If using MySQL or Postgres, you will need to update rename ````vx/credentials.example.js```` to ````vx/credentials.js```` and input your credentials.
-
 
 ### Start
 ````
 npm start
 ````
-
-The API runs on port ````5555```` by default, and the root can be accessed by navigating to ````http://localhost:5555/api```` or ````http://localhost:5555/api/vX```` in your browser.
+this will open the react client, which its README is [here](https://github.com/vicaescorcio/vehicle-api/tree/main/vehicle-react-client) 
 
 
 ### Testing
-The tests for each version of the API can be found in ````vx/test````, and each route has its own test file. Functions used for testing the validity of each response can be found in ````validators.js````, and various settings in ````settings.js````.
-
 To run the tests:
 
 ````
 npm test
 ````
 
+P.S: all npm scripts are listed in [package.json](https://github.com/vicaescorcio/vehicle-api/blob/main/package.json)
+
 ### Running in production
-Both [forever](https://github.com/foreverjs/forever) and [pm2](https://github.com/Unitech/pm2) are great for keeping the API alive (and load balancing in the case of pm2).
-
-
-### Author
-[John J Czaplewski](https://github.com/jczaplew), with inspiration and assistance from [Puneet Kishor](http://punkish.org) and [Shanan Peters](http://strata.geology.wisc.edu).
-
-### Funding
-Development supported by NSF CAREER EAR-1150082 and NSF ICER-1440312.
-
-### License
-CC-BY for all code unique to this API.
+- You can use API with postman collecion:
+- See SWAGGER docsapi:
