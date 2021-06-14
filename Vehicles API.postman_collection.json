@@ -1,0 +1,121 @@
+{
+	"info": {
+		"_postman_id": "8938405f-737a-4c9f-a892-360ae65760b5",
+		"name": "Vehicles API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "list vehicles",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "vehicle",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/vehicles/{{vehicle id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"vehicles",
+						"{{vehicle id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create vehicle",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"AUDI-200\",\n    \"moreInfo\": {\n        \"odometer\": {},\n        \"gas\": {},\n        \"tires\": [],\n        \"status_charge\":[]\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/vehicle",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"vehicle"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "vehicle",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/vehicles/{{vehicle id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"vehicles",
+						"{{vehicle id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update vehicle",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"AUDI-200\",\n    \"moreInfo\": {\n        \"odometer\": {},\n        \"gas\": {},\n        \"tires\": [],\n        \"status_charge\":[]\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/vehicle/{{vehicle id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"vehicle",
+						"{{vehicle id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "vehicle id",
+			"value": ":id"
+		},
+		{
+			"key": "host",
+			"value": "https://vehicles-node-react.herokuapp.com"
+		}
+	]
+}
