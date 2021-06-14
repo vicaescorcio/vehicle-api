@@ -10,7 +10,7 @@
     "test": "cross-env NODE_ENV=test jest --testTimeout=10000",
     "pretest": "cd src/ && cross-env NODE_ENV=test sequelize db:drop && NODE_ENV=test sequelize db:create && NODE_ENV=test sequelize db:migrate",
     "dev:setup": "cd src/ && sequelize db:drop && sequelize db:create && sequelize db:migrate && sequelize db:seed:all",
-    "build": "cd src && sequelize db:migrate && cd .. && cd vehicle-react-client && npm install && npm run buildClient",
+    "build": "cd src && sequelize db:migrate && cd .. && cd vehicle-react-client && cross-env SKIP_PREFLIGHT_CHECK=true npm install && npm run buildClient",
     "start": "node index.js"
   },
   "repository": {
