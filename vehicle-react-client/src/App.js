@@ -20,7 +20,11 @@ function App() {
     (async () => {
       const res = await axios.get("/api/vehicles");
       const resData = await res.data;
-      setData(resData.vehicles);
+      const vehicles = resData.vehicles.map((vehicle) => {
+        vehicle['moreInfo'] = JSON.stringify(vehicle['moreInfo']);
+        return vehicle;
+      });
+      setData(vehicles);
       setColumns(getColumns(resData.vehicles[0]));
     })();
   }, []);
@@ -56,7 +60,7 @@ function App() {
                 <ul>
                   <li>
                     <GitHubButton
-                      href="https://github.com/ntkme/github-buttons/subscription"
+                      href="https://github.com/vicaescorcio/vehicle-api"
                       data-size="large"
                       aria-label="Watch ntkme/github-buttons on GitHub"
                     >

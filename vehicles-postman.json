@@ -48,13 +48,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}/api/vehicle",
+					"raw": "{{host}}/api/vehicles",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
 						"api",
-						"vehicle"
+						"vehicles"
 					]
 				}
 			},
@@ -94,13 +94,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}/api/vehicle/{{vehicle id}}",
+					"raw": "{{host}}/api/vehicles/{{vehicle id}}",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
 						"api",
-						"vehicle",
+						"vehicles",
 						"{{vehicle id}}"
 					]
 				}
