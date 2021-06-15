@@ -41,7 +41,7 @@ function App() {
           </div>
         </nav>
         <div class="container">
-          <div>
+          <div class="z-depth-5" id="vehicles-table">
             <Table columns={columns} data={data} />
           </div>
         </div>
@@ -49,10 +49,9 @@ function App() {
           <div class="container">
             <div class="row">
               <div class="col l6 s12">
-                <h5 class="white-text">Footer Content</h5>
+                <h5 class="white-text">Vehicle API</h5>
                 <p class="grey-text text-lighten-4">
-                  You can use rows and columns here to organize your footer
-                  content.
+                  Data based on <a href="http://fipeapi.appspot.com/"> FIPEAPI</a>.
                 </p>
               </div>
               <div class="col l4 offset-l2 s12">
